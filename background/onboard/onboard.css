@@ -1,0 +1,40 @@
+:root {
+  --baseBG: var(--green);
+}
+
+body {
+  background-color: var(--baseBG);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: auto;
+  margin: auto;
+}
+
+main h1 {
+  font-size: 32px;
+}
+
+main input {
+  margin: 10px;
+  padding: 5px;
+  font-size: 28px;
+  outline: none;
+  border-radius: 5px;
+  background-color: var(--green-slate);
+}
+
+button {
+  margin: 10px;
+  padding: 10px 15px;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: var(--orange-dark);
+}

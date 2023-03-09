@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "target": "es6",
+      "module": "es6",
+      "lib": ["es6","DOM"], // <--- Add this line for promise identification
+      "outDir": "./",
+      "rootDir": "./",
+      "sourceMap": false, // <--- make this true if you want to debug
+      "strict": true,
+      "noImplicitAny": true,
+      "esModuleInterop": true,    
+    },
+    "exclude": [
+      "node_modules"
+    ]
+  }

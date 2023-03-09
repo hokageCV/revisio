@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+:root {
+  /* --baseBG: #2e3436; */
+  /* --mainText: #e9dcc9; */
+  --baseBG: var(--orange-light);
+
+  --cardBG: var(--orange-light-dark);
+  --cardText: var(--blue-dark);
+}
+
+body {
+  background-color: var(--baseBG);
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 5px;
+  height: 100vh;
+}
+
+main {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 5px;
+}
+
+.card {
+  background-color: var(--cardBG);
+  color: var(--cardText);
+  max-width: 75%;
+  font-family: "Montserrat", sans-serif;
+
+  padding: 15px;
+  margin: 2px;
+  margin-top: 10%;
+
+  /* card effect */
+  box-shadow: 2px 1px 10px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.card p {
+  padding: 2px;
+  margin: 10px;
+}
+.card #question {
+  font-size: 38px;
+}
+.card #answer {
+  font-size: 30px;
+  filter: blur(20px);
+}
+
+.card #answer:hover {
+  filter: none;
+}
