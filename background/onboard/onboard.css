@@ -1,4 +1,9 @@
 :root {
+  --snow-1: #eceff4;
+  --snow-3: #d8dee9;
+  --night-3: #3b4252;
+  --frost-3: #81a1c1;
+
   --baseBG: var(--snow-1);
   --inputBG: var(--snow-3);
   --heading: var(--night-3);

@@ -1,24 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // chrome.storage.sync.get("darkMode", (data) => {
-    //     if (data.darkMode) {
-    //         document.body.classList.add("dark-mode");
-    //     }
-    // });
-
+    updateDarkModeClass();
     fetchNDisplayData();
 });
 
-// chrome.storage.onChanged.addListener((changes, namespace) => {
-//     if (namespace === "sync" && changes.darkMode) {
-//         const newValue = changes.darkMode.newValue;
+chrome.storage.onChanged.addListener((changes, namespace) => {
+    if (namespace === "sync" && changes.darkMode) {
+        updateDarkModeClass();
+    }
+});
 
-//         document.body.classList.toggle("dark-mode");
-//         console.log(
-//             `dark mode ${newValue ? "on" : "off"}, newValue is :`,
-//             newValue
-//         );
-//     }
-// });
+// ===================================================================
+// ======================= updateDarkMode.ts (modularize this) =======
+// ===================================================================
+const updateDarkModeClass = () => {
+    chrome.storage.sync.get("darkMode", (data) => {
+        const darkMode = data.darkMode || false;
+        document.body.classList.toggle("dark-mode", darkMode);
+    });
+};
+// ===================================================================
+// ======================= updateDarkMode.ts END  ====================
+// ===================================================================
 
 // ===================================================================
 // ======================= Data.ts (modularize this) =================

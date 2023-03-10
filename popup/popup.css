@@ -1,58 +1,71 @@
 :root {
-  --navBG: #f0f0f0;
-  --navText: #333;
-  --mainBG: #fff;
-  --mainText: #333;
+  --aurora-orange: #d08770;
+  --aurora-green: #a3be8c;
+  --aurora-yellow: #ebcb8b;
+  --night-4: #2e3440;
+
+  --night-1: #4c566a;
+  --night-3: #3b4252;
+  --snow-1: #eceff4;
+
+  --frost-2: #88c0d0;
 }
 
 body {
   width: 250px;
   margin: 0;
   padding: 0;
-  --bg-color: var(--mainBG);
-  --text-color: var(--mainText);
+
+  --navBG: var(--aurora-orange);
+  --navText: var(--snow-1);
+  --mainBG: var(--aurora-green);
+  --buttonBG: var(--aurora-yellow);
+  --buttonText: var(--night-4);
+
+  border: 4px solid var(--night-4);
 }
 
 nav {
   background-color: var(--navBG);
   padding: 1px;
   margin: 0;
+  height: 40px;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   box-sizing: border-box;
 }
 nav p {
   font-size: 22px;
   color: var(--navText);
   margin: 1px;
-  padding: 5px;
+  padding: 3px;
   height: 30px;
 }
 
 main {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  font-size: 16px;
+  background-color: var(--mainBG);
+  font-size: 20px;
   padding: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 }
 
 main button {
-  margin-left: 10px;
+  margin: 10px;
   cursor: pointer;
   padding: 5px 10px;
   border-radius: 5px;
+  background-color: var(--buttonBG);
+  color: var(--buttonText);
 }
 
 body.dark-mode {
-  --navBG: #222;
-  --navText: #fff;
-  --mainBG: #111;
-  --mainText: #fff;
-  --bg-color: var(--mainBG);
-  --text-color: var(--mainText);
+  --mainBG: var(--night-1);
+  --buttonBG: var(--night-3);
+  --buttonText: var(--snow-1);
 }

@@ -9,21 +9,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 document.addEventListener("DOMContentLoaded", () => {
-    chrome.storage.sync.get("darkMode", (data) => {
-        console.log("🚀 ⚡ file: newTab.ts:4 ⚡ chrome.storage.sync.get ⚡ data.darkMode:", data.darkMode);
-        if (data.darkMode) {
-            document.body.classList.add("dark-mode");
-        }
-    });
+    updateDarkModeClass();
     fetchNDisplayData();
 });
 chrome.storage.onChanged.addListener((changes, namespace) => {
     if (namespace === "sync" && changes.darkMode) {
-        const newValue = changes.darkMode.newValue;
-        document.body.classList.toggle("dark-mode");
-        console.log(`dark mode ${newValue ? "on" : "off"}, newValue is :`, newValue);
+        updateDarkModeClass();
     }
 });
+// ===================================================================
+// ======================= updateDarkMode.ts (modularize this) =======
+// ===================================================================
+const updateDarkModeClass = () => {
+    chrome.storage.sync.get("darkMode", (data) => {
+        const darkMode = data.darkMode || false;
+        document.body.classList.toggle("dark-mode", darkMode);
+    });
+};
 const fetchData = () => __awaiter(void 0, void 0, void 0, function* () {
     const API_URL = "https://hokagecv.github.io/revisio-data/data.json";
     try {
@@ -88,3 +90,6 @@ const fetchNDisplayData = () => __awaiter(void 0, void 0, void 0, function* () {
         displayData(data);
     }
 });
+// ===================================================================
+// ======================= Data.ts END=================
+// ===================================================================

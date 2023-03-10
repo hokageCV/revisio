@@ -1,18 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 :root {
-  --baseBG: var(--aurora-green);
-  --cardBG: var(--aurora-yellow);
-  --cardText: var(--night-4);
+  --aurora-green: #a3be8c;
+  --aurora-yellow: #ebcb8b;
+  --night-4: #2e3440;
+
+  --night-1: #4c566a;
+  --night-3: #3b4252;
+  --snow-1: #eceff4;
 }
 
 body {
-  background-color: var(--baseBG);
-
   box-sizing: border-box;
   margin: 0;
   padding: 5px;
   height: 100vh;
+
+  --baseBG: var(--aurora-green);
+  --cardBG: var(--aurora-yellow);
+  --cardText: var(--night-4);
+
+  background-color: var(--baseBG);
 }
 
 main {
@@ -56,4 +64,12 @@ main {
 
 .card #answer:hover {
   filter: none;
+}
+
+body.dark-mode {
+  --baseBG: var(--night-1);
+  --cardBG: var(--night-3);
+  --cardText: var(--snow-1);
+
+  background-color: var(--baseBG);
 }
