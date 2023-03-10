@@ -9,12 +9,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 document.addEventListener("DOMContentLoaded", () => {
+    chrome.storage.sync.get("darkMode", (data) => {
+        console.log("🚀 ⚡ file: newTab.ts:4 ⚡ chrome.storage.sync.get ⚡ data.darkMode:", data.darkMode);
+        if (data.darkMode) {
+            document.body.classList.add("dark-mode");
+        }
+    });
     fetchNDisplayData();
 });
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.command === "change new tab bg color") {
-        document.documentElement.style.setProperty("--baseBG", "#ddfcf7");
-        document.documentElement.style.setProperty("--mainText", "#041622");
+chrome.storage.onChanged.addListener((changes, namespace) => {
+    if (namespace === "sync" && changes.darkMode) {
+        const newValue = changes.darkMode.newValue;
+        document.body.classList.toggle("dark-mode");
+        console.log(`dark mode ${newValue ? "on" : "off"}, newValue is :`, newValue);
     }
 });
 const fetchData = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -46,7 +53,7 @@ const displayData = (data) => {
     answer.innerText = data.answer;
 };
 const storeData = (data) => __awaiter(void 0, void 0, void 0, function* () {
-    yield chrome.storage.local.set({
+    yield chrome.storage.sync.set({
         QAData: {
             id: data.id,
             subject: data.subject,
@@ -63,27 +70,13 @@ const isDataOlderThanToday = (storedData) => {
     return storedDate.toDateString() !== today.toDateString();
 };
 const getStoredData = () => __awaiter(void 0, void 0, void 0, function* () {
-    const data = yield chrome.storage.local.get(["QAData"]);
+    const data = yield chrome.storage.sync.get(["QAData"]);
     if (data.QAData && !isDataOlderThanToday(data.QAData)) {
         return data.QAData;
     }
     else
         return null;
 });
-// const getStoredData = async (): Promise<StoredData | null> => {
-//     const data = await chrome.storage.local.get(["QAData"]);
-//     if (data.QAData) {
-//         const storedDate = new Date(data.QAData.date);
-//         const today = new Date();
-//         // Check if stored date is older than one day
-//         if (today.getTime() - storedDate.getTime() > 86400000) {
-//             return null;
-//         }
-//         return data.QAData;
-//     } else {
-//         return null;
-//     }
-// };
 const fetchNDisplayData = () => __awaiter(void 0, void 0, void 0, function* () {
     const storedData = yield getStoredData();
     if (storedData && !isDataOlderThanToday(storedData)) {

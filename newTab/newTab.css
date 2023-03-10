@@ -1,12 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 :root {
-  /* --baseBG: #2e3436; */
-  /* --mainText: #e9dcc9; */
-  --baseBG: var(--orange-light);
-
-  --cardBG: var(--orange-light-dark);
-  --cardText: var(--blue-dark);
+  --baseBG: var(--aurora-green);
+  --cardBG: var(--aurora-yellow);
+  --cardText: var(--night-4);
 }
 
 body {

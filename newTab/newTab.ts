@@ -1,13 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // chrome.storage.sync.get("darkMode", (data) => {
+    //     if (data.darkMode) {
+    //         document.body.classList.add("dark-mode");
+    //     }
+    // });
+
     fetchNDisplayData();
 });
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.command === "change new tab bg color") {
-        document.documentElement.style.setProperty("--baseBG", "#ddfcf7");
-        document.documentElement.style.setProperty("--mainText", "#041622");
-    }
-});
+// chrome.storage.onChanged.addListener((changes, namespace) => {
+//     if (namespace === "sync" && changes.darkMode) {
+//         const newValue = changes.darkMode.newValue;
+
+//         document.body.classList.toggle("dark-mode");
+//         console.log(
+//             `dark mode ${newValue ? "on" : "off"}, newValue is :`,
+//             newValue
+//         );
+//     }
+// });
 
 // ===================================================================
 // ======================= Data.ts (modularize this) =================
@@ -55,7 +66,7 @@ const displayData = (data: StoredData | FetchedData) => {
 };
 
 const storeData = async (data: FetchedData) => {
-    await chrome.storage.local.set({
+    await chrome.storage.sync.set({
         QAData: {
             id: data.id,
             subject: data.subject,
@@ -76,7 +87,7 @@ const isDataOlderThanToday = (storedData: StoredData) => {
 };
 
 const getStoredData = async (): Promise<StoredData | null> => {
-    const data = await chrome.storage.local.get(["QAData"]);
+    const data = await chrome.storage.sync.get(["QAData"]);
 
     if (data.QAData && !isDataOlderThanToday(data.QAData)) {
         return data.QAData;
@@ -94,3 +105,7 @@ const fetchNDisplayData = async () => {
         displayData(data);
     }
 };
+
+// ===================================================================
+// ======================= Data.ts END=================
+// ===================================================================

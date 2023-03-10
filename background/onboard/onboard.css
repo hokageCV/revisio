@@ -1,5 +1,8 @@
 :root {
-  --baseBG: var(--green);
+  --baseBG: var(--snow-1);
+  --inputBG: var(--snow-3);
+  --heading: var(--night-3);
+  --buttonBG: var(--frost-3);
 }
 
 body {
@@ -18,6 +21,7 @@ main {
 
 main h1 {
   font-size: 32px;
+  color: var(--heading);
 }
 
 main input {
@@ -26,7 +30,7 @@ main input {
   font-size: 28px;
   outline: none;
   border-radius: 5px;
-  background-color: var(--green-slate);
+  background-color: var(--inputBG);
 }
 
 button {
@@ -36,5 +40,5 @@ button {
   font-weight: bold;
   border-radius: 10px;
   cursor: pointer;
-  background-color: var(--orange-dark);
+  background-color: var(--buttonBG);
 }

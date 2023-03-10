@@ -23,8 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 const saveName = (input) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield chrome.storage.local.set({ userName: input.value });
-        yield chrome.storage.local.set({ isOnboarded: true });
+        yield chrome.storage.sync.set({ userName: input.value });
+        yield chrome.storage.sync.set({ isOnboarded: true });
         window.close();
         chrome.tabs.create({ url: "chrome://newtab" });
     }

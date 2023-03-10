@@ -1,11 +1,25 @@
 "use strict";
-console.log("popup is running");
-const newTabBtn = document.getElementById("new-tab-btn");
-newTabBtn.addEventListener("click", () => {
-    const message = { command: "change new tab bg color" };
-    chrome.tabs.query({}, (tabs) => {
-        for (const tab of tabs) {
-            chrome.tabs.sendMessage(tab.id, message);
+// const newTabBtn = document.getElementById("new-tab-btn")!;
+// newTabBtn.addEventListener("click", () => {
+//     const message = { command: "change new tab bg color" };
+// chrome.tabs.query({}, (tabs) => {
+//     for (const tab of tabs) {
+//         chrome.tabs.sendMessage(tab.id as number, message);
+//     }
+// });
+// });
+const toggleBtn = document.getElementById("toggle-btn");
+const body = document.querySelector("body");
+document.addEventListener("DOMContentLoaded", () => {
+    chrome.storage.sync.get("darkMode", (data) => {
+        if (data.darkMode) {
+            body.classList.add("dark-mode");
         }
+    });
+});
+toggleBtn.addEventListener("click", function () {
+    body.classList.toggle("dark-mode");
+    chrome.storage.sync.get("darkMode", (data) => {
+        chrome.storage.sync.set({ darkMode: !data.darkMode });
     });
 });
